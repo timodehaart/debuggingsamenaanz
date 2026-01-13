@@ -1,0 +1,5 @@
+{
+  "remoteAdmin": "http://localhost:4201/remoteEntry.json",
+  "remoteEmployee": "http://localhost:4202/remoteEntry.json",
+  "remoteResearcher": "http://localhost:4203/remoteEntry.json"
+}

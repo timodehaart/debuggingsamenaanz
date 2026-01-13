@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Projects Overview",
+    "route": "/researcher/projectsoverview",
+    "icon": "home"
+  },
+  {
+    "label": "Samen aan Z",
+    "route": "/researcher/project",
+    "icon": "projects"
+  },
+  {
+    "label": "Users",
+    "route": "/researcher/users",
+    "icon": "users"
+  }
+]

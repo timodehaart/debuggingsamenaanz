@@ -1,0 +1,12 @@
+[
+  {
+    "label": "Projects Overview",
+    "route": "/researcher/projects",
+    "icon": "home"
+  },
+  {
+    "label": "Samen aan Z",
+    "route": "/researcher/samenaanz",
+    "icon": "projects"
+  }
+]

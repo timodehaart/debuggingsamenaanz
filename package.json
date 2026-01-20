@@ -3,20 +3,33 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    
     "build:shared-ui": "ng build shared-ui",
     "watch:shared-ui": "ng build shared-ui --watch",
-    "dev": "concurrently \"npm run watch:shared-ui\" \"npm run start\"",
-    "start": "concurrently \"npm run start:remotes\" \"npm run start:shell:wait\"",
+    
+    "start": "ng build shared-ui && concurrently \"npm run start:remotes\" \"npm run start:shell:wait\"",
     "start:remotes": "concurrently \"npm run start:admin\" \"npm run start:employee\" \"npm run start:researcher\"",
     "start:shell": "ng serve shell --port 4200",
     "start:shell:wait": "wait-on http://localhost:4201 http://localhost:4202 http://localhost:4203 && npm run start:shell",
     "start:admin": "ng serve remote-admin --port 4201",
     "start:employee": "ng serve remote-employee --port 4202",
     "start:researcher": "ng serve remote-researcher --port 4203",
+    
+    "dev": "ng build shared-ui && concurrently \"npm run watch:shared-ui\" \"npm run start\"",
+    "dev:admin": "ng build shared-ui && concurrently \"npm run watch:shared-ui\" \"npm run start:admin\" \"npm run start:shell:wait:admin\"",
+    "dev:employee": "ng build shared-ui && concurrently \"npm run watch:shared-ui\" \"npm run start:employee\" \"npm run start:shell:wait:employee\"",
+    "dev:researcher": "ng build shared-ui && concurrently \"npm run watch:shared-ui\" \"npm run start:researcher\" \"npm run start:shell:wait:researcher\"",
+    
+    "start:shell:wait:admin": "wait-on http://localhost:4201 && npm run start:shell",
+    "start:shell:wait:employee": "wait-on http://localhost:4202 && npm run start:shell",
+    "start:shell:wait:researcher": "wait-on http://localhost:4203 && npm run start:shell",
+    
     "build:all": "ng build shared-ui && ng build remote-admin && ng build remote-employee && ng build remote-researcher && ng build shell",
+    "build:production": "ng build shared-ui --configuration production && ng build remote-admin --configuration production && ng build remote-employee --configuration production && ng build remote-researcher --configuration production && ng build shell --configuration production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:all": "ng test shell && ng test remote-admin && ng test remote-employee && ng test remote-researcher"
   },
   "private": true,
   "dependencies": {
@@ -52,6 +65,7 @@
     "ng-packagr": "^19.2.2",
     "postcss": "8.4",
     "tailwindcss": "3.4",
-    "typescript": "~5.6.0"
+    "typescript": "~5.6.0",
+    "wait-on": "^9.0.3"
   }
 }

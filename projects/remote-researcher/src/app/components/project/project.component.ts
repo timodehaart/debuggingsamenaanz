@@ -10,17 +10,15 @@ import { BannerComponent } from 'shared-ui';
     <div class="p-6">
       <!-- Banner -->
       <lib-banner
-        [title]="'User Management'"
-        [subtitle]="'Manage all users and organizations in one place. Add new members, assign them to departments, and control access across projects and research areas efficiently.'"
+        [title]="'Survey Dashboard'"
+        [subtitle]="'In this dashboard, you can create, update, and manage surveys. Distribute them to your target group and analyse responses to gather meaningful insights.'"
         [buttonText]="'Get Started'"
         [buttonAction]="onGetStarted"
       ></lib-banner>
     </div>
   `
 })
-export class UsersComponent {
-  userName: string = '';
-
+export class ProjectComponent {
   onGetStarted = (): void => {
     console.log('Navigate to projects');
     // Add navigation logic

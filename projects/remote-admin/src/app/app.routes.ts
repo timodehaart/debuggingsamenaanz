@@ -1,24 +1,26 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent
-  },
-  {
-    path: 'users',
-    component: UsersComponent
-  },
-  {
-    path: 'manage-projects',
-    component: DashboardComponent // Replace with ManageProjectsComponent
-  },
-  {
-    path: 'project',
+    component: AppComponent,
     children: [
-      // Your project routes here
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
+      }
     ]
   }
 ];

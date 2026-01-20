@@ -4,7 +4,7 @@ module.exports = withNativeFederation({
   name: 'remoteResearcher',
 
   exposes: {
-    './Component': './projects/remote-researcher/src/app/app.component.ts',
+    './routes': './projects/remote-researcher/src/app/app.routes.ts',
   },
 
   shared: {

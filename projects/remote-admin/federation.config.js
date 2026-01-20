@@ -4,7 +4,7 @@ module.exports = withNativeFederation({
   name: 'remoteAdmin',
 
   exposes: {
-    './Component': './projects/remote-admin/src/app/app.component.ts',
+    './routes': './projects/remote-admin/src/app/app.routes.ts',
   },
 
   shared: {

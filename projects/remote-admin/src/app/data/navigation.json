@@ -1,17 +1,12 @@
 [
   {
     "label": "Projects Overview",
-    "route": "/researcher/projectsoverview",
+    "route": "/admin/home",
     "icon": "home"
   },
   {
-    "label": "Samen aan Z",
-    "route": "/researcher/project",
-    "icon": "projects"
-  },
-  {
     "label": "Users",
-    "route": "/researcher/users",
+    "route": "/admin/users",
     "icon": "users"
   }
 ]

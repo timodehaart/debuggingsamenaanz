@@ -1,12 +1,18 @@
 [
   {
     "label": "Projects Overview",
-    "route": "/researcher/projects",
+    "route": "/researcher/home",
     "icon": "home"
   },
   {
     "label": "Samen aan Z",
-    "route": "/researcher/samenaanz",
+    "route": "/researcher/project",
     "icon": "projects"
+  },
+    {
+    "label": "Newsletters",
+    "route": "/researcher/news",
+    "icon": "news"
   }
+  
 ]

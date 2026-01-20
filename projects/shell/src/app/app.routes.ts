@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { authGuard, roleGuard } from './guards/auth.guard';
 import { LoginComponent } from './components/login/login.component';
+import { authGuard, roleGuard } from './guards/auth.guard';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 
 export const routes: Routes = [
@@ -12,76 +12,26 @@ export const routes: Routes = [
     path: 'admin',
     canActivate: [authGuard, roleGuard],
     data: { role: 'admin' },
-    children: [
-      {
-        path: '',
-        loadComponent: () =>
-          loadRemoteModule({
-            remoteEntry: 'http://localhost:4201/remoteEntry.json',
-            remoteName: 'remoteAdmin',
-            exposedModule: './Component'
-          }).then(m => m.AppComponent)
-      },
-      {
-        path: '**',
-        loadComponent: () =>
-          loadRemoteModule({
-            remoteEntry: 'http://localhost:4201/remoteEntry.json',
-            remoteName: 'remoteAdmin',
-            exposedModule: './Component'
-          }).then(m => m.AppComponent)
-      }
-    ]
+    // Load routes instead of component
+    loadChildren: () => 
+      loadRemoteModule('remoteAdmin', './routes')
+        .then(m => m.routes)
   },
   {
     path: 'employee',
     canActivate: [authGuard, roleGuard],
     data: { role: 'employee' },
-    children: [
-      {
-        path: '',
-        loadComponent: () =>
-          loadRemoteModule({
-            remoteEntry: 'http://localhost:4202/remoteEntry.json',
-            remoteName: 'remoteEmployee',
-            exposedModule: './Component'
-          }).then(m => m.AppComponent)
-      },
-      {
-        path: '**',
-        loadComponent: () =>
-          loadRemoteModule({
-            remoteEntry: 'http://localhost:4202/remoteEntry.json',
-            remoteName: 'remoteEmployee',
-            exposedModule: './Component'
-          }).then(m => m.AppComponent)
-      }
-    ]
+    loadChildren: () => 
+      loadRemoteModule('remoteEmployee', './routes')
+        .then(m => m.routes)
   },
   {
     path: 'researcher',
     canActivate: [authGuard, roleGuard],
     data: { role: 'researcher' },
-    children: [
-      {
-        path: '',
-        loadComponent: () =>
-          loadRemoteModule({
-            remoteEntry: 'http://localhost:4203/remoteEntry.json',
-            remoteName: 'remoteResearcher',
-            exposedModule: './Component'
-          }).then(m => m.AppComponent)
-      },
-      {
-        path: '**',
-        loadComponent: () =>
-          loadRemoteModule({
-            remoteEntry: 'http://localhost:4203/remoteEntry.json',
-            remoteName: 'remoteResearcher',
-            exposedModule: './Component'
-          }).then(m => m.AppComponent)
-      }
-    ]
+    loadChildren: () => 
+      loadRemoteModule('remoteResearcher', './routes')
+        .then(m => m.routes)
   },
   {
     path: '',

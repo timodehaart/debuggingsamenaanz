@@ -14,5 +14,4 @@ export class BannerComponent {
   @Input() buttonText?: string;
   @Input() buttonAction?: () => void;
   @Input() userName?: string;
-  @Input() showIllustration: boolean = true;
 }

@@ -1,0 +1,77 @@
+<app-template-popup>
+</app-template-popup>
+
+<div class="p-6">
+  <!-- Banner -->
+  <lib-banner
+    [userName]="'Newsletters Dashboard'"
+    [subtitle]="
+      'In this dashboard. you can create and edit your newsletters. Share your news and insights to your target groups.'
+    "
+    [buttonText]="'Get Started'"
+    [buttonAction]="onGetStarted"
+  ></lib-banner>
+</div>
+
+<div class="p-6">
+  <nav class="flex justify-end my-4 space-x-2">
+    <lib-action-button
+      [buttonText]="'Manage templates'"
+      [buttonAction]="onGetStarted"
+    >
+    </lib-action-button>
+
+    <lib-action-button
+      [buttonText]="'+ Create newsletter'"
+      [buttonAction]="onGetStarted"
+    >
+    </lib-action-button>
+  </nav>
+
+  <div class="bg-white rounded-lg shadow">
+    <table class="w-full">
+      <thead class="bg-gray-50 border-b">
+        <tr>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+          >
+            Title
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+          >
+            Sender
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+          >
+            Last updated
+          </th>
+          <th
+            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
+          >
+            Views
+          </th>
+        </tr>
+      </thead>
+      <tbody class="divide-y">
+        @for (title of titles; track title.id) {
+        <tr class="hover:bg-gray-50">
+          <td class="px-6 py-4">{{ title.name }}</td>
+          <td class="px-6 py-4">{{ title.release }}</td>
+          <td class="px-6 py-4">
+            <span class="px-2 py-1 text-xs rounded bg-blue-100 text-blue-800">
+              {{ title.status }}
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            <span class="px-2 py-1 text-xs rounded">
+              {{ title.views }}
+            </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

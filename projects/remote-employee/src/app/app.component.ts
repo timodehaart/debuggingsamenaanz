@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent, NavigationItem, UserInfo } from 'shared-ui';
-import { of } from 'rxjs';
-import navigationData from './data/navigation.json';
+import { EmployeeDataService } from './services/employee-data.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterModule, SidebarComponent],
+  providers: [EmployeeDataService],
   template: `
     <lib-sidebar [navigationItems]="navigationItems" [userInfo]="userInfo">
       <router-outlet></router-outlet>
@@ -18,12 +18,12 @@ import navigationData from './data/navigation.json';
 export class AppComponent implements OnInit {
   navigationItems: NavigationItem[] = [];
   userInfo: UserInfo = {
-    name: 'Employee User',
-    role: 'Employee',
+    name: 'Joyce',
+    role: 'User',
     email: 'employee@example.com'
   };
 
-  constructor() {
+  constructor(private employeeDataService: EmployeeDataService) {
     window.addEventListener('logout', () => {
       localStorage.removeItem('currentUser');
       window.location.href = '/login';
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    of(navigationData).subscribe(items => {
+    this.employeeDataService.getNavigationItems().subscribe(items => {
       this.navigationItems = items;
     });
   }

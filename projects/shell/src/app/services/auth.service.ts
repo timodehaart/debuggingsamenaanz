@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { delay } from 'rxjs/operators';
 import { User, LoginCredentials } from '../models/auth.model';
 
 @Injectable({
@@ -12,9 +12,9 @@ export class AuthService {
 
   // Mock user data
   private mockUsers: User[] = [
-    { id: '1', name: 'Admin User', email: 'admin@example.com', role: 'admin' },
-    { id: '2', name: 'Employee User', email: 'employee@example.com', role: 'employee' },
-    { id: '3', name: 'Researcher User', email: 'researcher@example.com', role: 'researcher' }
+    { id: '1', name: 'Sophie', email: 'admin@example.com', role: 'admin' },
+    { id: '2', name: 'Joyce', email: 'employee@example.com', role: 'employee' },
+    { id: '3', name: 'Emma', email: 'researcher@example.com', role: 'researcher' }
   ];
 
   constructor() {

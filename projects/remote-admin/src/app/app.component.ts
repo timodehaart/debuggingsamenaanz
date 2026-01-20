@@ -18,8 +18,8 @@ import { AdminDataService } from './services/admin-data.service';
 export class AppComponent implements OnInit {
   navigationItems: NavigationItem[] = [];
   userInfo: UserInfo = {
-    name: 'Admin User',
-    role: 'Administrator',
+    name: 'Sophie',
+    role: 'Admin',
     email: 'admin@example.com'
   };
 

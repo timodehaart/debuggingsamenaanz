@@ -1,0 +1,43 @@
+<div class="min-h-screen flex items-center justify-center bg-background p-text">
+  <div class="bg-background rounded-lg shadow-component w-full max-w-md p-box box-border">
+    <h2 class="text-h1 font-medium text-center mb-default">SAZ Platform Login</h2>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-default">
+        <label class="block text-primaryText mb-1">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          class="w-full box-border p-text border-default rounded-lg bg-inputBackground focus:outline-none focus:ring-2 focus:ring-actionButton"
+          required
+        />
+      </div>
+
+      <div class="mb-default">
+        <label class="block text-primaryText mb-1">Password</label>
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          class="w-full box-border p-text border-default rounded-lg bg-inputBackground focus:outline-none focus:ring-2 focus:ring-actionButton"
+          required
+        />
+      </div>
+
+      @if (error) {
+        <div class="border-errorBorder text-errorMessageText border-default p-text rounded-lg mb-default box-border">
+            {{error}}
+        </div>
+      }
+
+      <button
+        type="submit"
+        [disabled]="loading"
+        class="w-full bg-actionButton text-actionButtonText py-button rounded-lg hover:bg-actionButton transition disabled:bg-disabledButton box-border"
+      >
+        {{ loading ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+  </div>
+</div>

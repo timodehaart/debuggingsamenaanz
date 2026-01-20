@@ -8,21 +8,22 @@ module.exports = {
       colors: {
         // Core backgrounds
         background: "#ffffff",
-        mainContentBackground: "#f2f6f9",
-        componentBackground: "#ffffff",
-        inputBackground: "#ffffff",
-
-        // Accents
-        noImageBackground: "#00bba7",
-
-        // Buttons
-        actionButton: "#5366d1",
-        actionButtonText: "#ffffff",
 
         // Text
         primaryText: "#515151",
-        errorImageText: "#ffffff",
-        deleteText: "#D93434",
+
+        // Buttons
+        actionButton: "#5366d1",
+        actionButtonHover: "#3f4fae",
+        actionButtonText: "#ffffff",
+        disabledButton: "9ca3af",
+
+        // Hover
+        sidebarHover: "#E6E9F8",
+
+        // Error
+        errorMessageText: "#b91c1c",
+        errorBorder: "#ff6976",
 
         // Borders / strokes
         stroke: "#bdbdbd",
@@ -31,35 +32,7 @@ module.exports = {
         bannerGradient1: "#5067EB",
         bannerGradient2: "#33BEA3",
         inputPlaceholderText: "#c4c4c4",
-        errorMessageText: "#ff6976",
         bannerText: "#ffffff",
-
-        status: {
-          scheduled: {
-            border: "#F7B13C",
-            text: "#F7B13C",
-            bg: "#FFFFFF",
-          },
-          open: {
-            border: "#40C79A",
-            text: "#40C79A",
-            bg: "#FFFFFF",
-          },
-          closed: {
-            border: "#FF6976",
-            text: "#FF6976",
-            bg: "#FFFFFF",
-          },
-          draft: {
-            border: "#9CA3AF",
-            text: "#9CA3AF",
-            bg: "#FFFFFF",
-          },
-        },
-        visibility: {
-          public: "#14B8A6",
-          private: "#D93434",
-        },
       },
 
       boxShadow: {
@@ -67,20 +40,30 @@ module.exports = {
       },
 
       borderRadius: {
-        // this matches your 0.5rem token
         lg: "0.5rem",
       },
 
+      borderWidth: {
+        default: "1px",
+      },
+
+      margin: {
+        default: "1.25rem",
+        button: "0.75rem",
+      },
+
       padding: {
+        box: "2rem",
+        text: "0.75rem",
         input: "0.75rem",
         button: "0.75rem",
       },
 
       fontSize: {
-        h1: "1.5rem",    // --font-size-h1
-        h2: "1.125rem",  // --font-size-h2
-        h3: "1rem",      // --font-size-h3
-        p: ".875rem",    // --font-size-p
+        h1: "1.5rem",
+        h2: "1.125rem",
+        h3: "1rem",
+        p: ".875rem",
       },
 
       fontWeight: {

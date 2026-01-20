@@ -1,0 +1,53 @@
+<div
+  class="absolute w-auto h-screen grid place-items-center justify-center bg-black bg-opacity-40 z-50"
+>
+  <content class="bg-background rounded-lg p-6 m-10 grid grid-row-3 space-y-4">
+    <h1>Select a template</h1>
+
+    <main class="grid grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-black">No template</h3>
+        <p class="text-sm font-bold text-blackmt-2">
+          Start wrtiting your post without an applied lay-out.
+        </p>
+      </section>
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-black">Announcement</h3>
+        <p class="text-sm font-bold text-black">
+          Share short important messages to your organisation.
+        </p>
+      </section>
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-black">Newsletter</h3>
+        <p class="text-sm font-bold text-black mt-2">
+          Share detailed news of your organisation.
+        </p>
+      </section>
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-black">Report</h3>
+        <p class="text-sm font-bold text-black mt-2">
+          Share new findings about your organisation or research.
+        </p>
+      </section>
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-black">Small newsletter</h3>
+        <p class="text-sm font-bold text-black mt-2">
+          Maximum 750 characters and 2 images. Use for Thank-you messages, small
+          announcements, and survey reminders.
+        </p>
+      </section>
+      <section class="bg-white p-6 rounded-lg shadow">
+        <h3 class="text-black">Medium newsletter</h3>
+        <p class="text-sm font-bold text-black mt-2">
+          Maximum 1500 characters and 4 images. Use for survey announcements and
+          small work-related news.
+        </p>
+      </section>
+    </main>
+
+    <nav class="flex justify-end">
+      <lib-action-button [buttonText]="'Create newsletter'">
+      </lib-action-button>
+    </nav>
+  </content>
+</div>

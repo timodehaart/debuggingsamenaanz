@@ -4,7 +4,7 @@ module.exports = withNativeFederation({
   name: 'remoteEmployee',
 
   exposes: {
-    './Component': './projects/remote-employee/src/app/app.component.ts',
+    './routes': './projects/remote-employee/src/app/app.routes.ts',
   },
 
   shared: {

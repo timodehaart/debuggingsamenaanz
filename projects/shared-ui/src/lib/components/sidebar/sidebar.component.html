@@ -1,92 +1,132 @@
-<div class="flex min-h-screen bg-mainContentBackground">
+<div class="flex min-h-screen bg-background">
   <!-- Sidebar -->
-  <aside class="w-64 bg-background border-r border-stroke flex flex-col">
-  <!-- Profile -->
-  <div class="p-4">
-    <!-- Avatar section + user info -->
-    <div class="flex items-center space-x-5">
-    <!-- Avatar placeholder (no logic yet) -->
-    <div class="w-12 h-12 rounded-full bg-noImageBackground/20 flex items-center justify-center">
-      <img src="/assets/emma.png" alt="profile picture" class="w-12 h-12 rounded-full">
-    </div>
+  <aside class="w-64 bg-background border-default border-stroke flex flex-col">
 
-    <!-- Name + role -->
-    @if (userInfo) {
-      <div>
-        <div class="text-h2 font-medium text-primaryText">
-            {{ userInfo.name }}
+    <!-- Profile -->
+    <div class="m-default">
+      <div class="flex items-center space-x-5">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center">
+          <img src="/assets/emma.png" alt="profile pic" class="w-12 h-12 rounded-full">
         </div>
-        <div class="text-p font-regular text-primaryText">
-            {{ userInfo.role }}
-        </div>
+
+        @if (userInfo) {
+          <div>
+            <div class="text-h2 font-medium text-primaryText">
+              {{ userInfo.name }}
+            </div>
+            <div class="text-p font-regular text-primaryText">
+              {{ userInfo.role }}
+            </div>
+          </div>
+        }
       </div>
-    }
     </div>
-  </div>
 
-  <!-- Divider -->
-  <div class="mx-5 border-b border-stroke"></div>
+    <!-- Divider -->
+    <div class="mx-default border-b border-stroke"></div>
 
-  <!-- Navigation -->
-  <nav class="flex-1 px-5 py-5 overflow-y-auto">
-    @for (item of navigationItems; track item.route) {
-      <a
+    <!-- Navigation -->
+    <nav class="flex-1 m-default overflow-y-auto space-y-1">
+      @for (item of navigationItems; track item.route) {
+        <a
           [routerLink]="item.route"
-          routerLinkActive="active-nav"
-          class="w-full block text-left px-5 py-2 text-p font-regular rounded-lg transition-colors mb-1 bg-background text-primaryText hover:bg-actionButton hover:text-actionButtonText">
+          (click)="setActiveItem(item.route)"
+          [class.bg-actionButton]="isActive(item.route)"
+          [class.text-actionButtonText]="isActive(item.route)"
+          [class.text-primaryText]="!isActive(item.route)"
+          [ngClass]="{
+            'hover:bg-sidebarHover': !isActive(item.route),
+            'cursor-default': isActive(item.route),
+            'cursor-pointer': !isActive(item.route)
+          }"
+          class="w-full block text-left p-text text-p font-regular rounded-lg"
+        >
           <span class="flex items-center gap-3">
-          @if (item.icon && iconMap[item.icon]) {
-              <lucide-icon class="w-4 h-4 mr-2" [img]="iconMap[item.icon]"></lucide-icon>
-          }
-          <span>{{ item.label }}</span>
+            @if (item.icon && iconMap[item.icon]) {
+              <lucide-icon class="w-4 h-4" [img]="iconMap[item.icon]"></lucide-icon>
+            }
+            <span>{{ item.label }}</span>
           </span>
-      </a>
-    }
-  </nav>
+        </a>
+      }
+    </nav>
 
-  <!-- Footer / Logout -->
-  <!-- BOTTOM SECTION -->
-  <div class="py-5 mx-5 border-t border-stroke mt-auto">
-    <div class="space-y-1">
+    <!-- Divider -->
+    <div class="mx-default border-b border-stroke"></div>
+
+    <!-- Bottom Section -->
+    <div class="m-default">
+      <div class="space-y-1">
+
+        <!-- Notifications -->
+        <button
+          type="button"
+          (click)="setActiveItem('notifications')"
+          [class.bg-actionButton]="activeItem === 'notifications'"
+          [class.text-actionButtonText]="activeItem === 'notifications'"
+          [class.text-primaryText]="activeItem !== 'notifications'"
+          [ngClass]="{
+            'hover:bg-sidebarHover': activeItem !== 'notifications',
+            'cursor-default': activeItem === 'notifications',
+            'cursor-pointer': activeItem !== 'notifications'
+          }"
+          class="w-full text-left p-text text-p font-regular flex items-center gap-3 rounded-lg"
+        >
+          <lucide-icon [img]="Bell" class="w-4 h-4"></lucide-icon>
+          <span>Notifications</span>
+        </button>
+
+        <!-- Settings -->
+        <button
+          type="button"
+          (click)="setActiveItem('settings')"
+          [class.bg-actionButton]="activeItem === 'settings'"
+          [class.text-actionButtonText]="activeItem === 'settings'"
+          [class.text-primaryText]="activeItem !== 'settings'"
+          [ngClass]="{
+            'hover:bg-sidebarHover': activeItem !== 'settings',
+            'cursor-default': activeItem === 'settings',
+            'cursor-pointer': activeItem !== 'settings'
+          }"
+          class="w-full text-left p-text text-p font-regular flex items-center gap-3 rounded-lg"
+        >
+          <lucide-icon [img]="Settings" class="w-4 h-4"></lucide-icon>
+          <span>Settings</span>
+        </button>
+
+        <!-- Help -->
+        <button
+          type="button"
+          (click)="setActiveItem('help')"
+          [class.bg-actionButton]="activeItem === 'help'"
+          [class.text-actionButtonText]="activeItem === 'help'"
+          [class.text-primaryText]="activeItem !== 'help'"
+          [ngClass]="{
+            'hover:bg-sidebarHover': activeItem !== 'help',
+            'cursor-default': activeItem === 'help',
+            'cursor-pointer': activeItem !== 'help'
+          }"
+          class="w-full text-left p-text text-p font-regular flex items-center gap-3 rounded-lg"
+        >
+          <lucide-icon [img]="MessageCircleQuestionMark" class="w-4 h-4"></lucide-icon>
+          <span>Help / FAQ</span>
+        </button>
+      </div>
+
+      <!-- Log out -->
       <button
         type="button"
-        class="w-full text-left px-5 py-2 text-p font-regular text-primaryText flex items-center gap-3"
+        (click)="onLogout()"
+        class="mt-1 w-full space-y-1 text-left p-text text-p font-regular flex items-center gap-3 rounded-lg text-primaryText hover:bg-sidebarHover"
       >
-        <lucide-icon [img]="Bell" class="w-4 h-4"></lucide-icon>
-        <span>Notifications</span>
-      </button>
-
-      <button
-        type="button"
-        class="w-full text-left px-5 py-2 text-p font-regular text-primaryText flex items-center gap-3"
-      >
-        <lucide-icon [img]="Settings" class="w-4 h-4"></lucide-icon>
-        <span>Settings</span>
-      </button>
-
-      <button
-        type="button"
-        class="w-full text-left px-5 py-2 text-p font-regular text-primaryText flex items-center gap-3"
-      >
-        <lucide-icon [img]="MessageCircleQuestionMark" class="w-4 h-4"></lucide-icon>
-        <span>Help / FAQ</span>
+        <lucide-icon [img]="LogOut" class="w-4 h-4"></lucide-icon>
+        <span>Log out</span>
       </button>
     </div>
-
-    <!-- Log out -->
-    <button
-      type="button"
-      (click)="onLogout()"
-      class="w-full text-left mt-2 px-5 py-2 text-p font-regular text-primaryText flex items-center gap-3"
-    >
-      <lucide-icon [img]="LogOut" class="w-4 h-4"></lucide-icon>
-      <span>Log out</span>
-    </button>
-  </div>
   </aside>
 
   <!-- Content Area -->
   <div class="flex-1 overflow-auto">
-  <ng-content></ng-content>
+    <ng-content></ng-content>
   </div>
 </div>

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BannerComponent } from 'shared-ui';
+import { BannerComponent, StatsBlocksComponent, StatBlock } from 'shared-ui';
+import statsData from '../../data/stats.json';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, BannerComponent],
+  imports: [CommonModule, BannerComponent, StatsBlocksComponent],
   template: `
     <div class="p-6">
       <!-- Banner -->
@@ -15,12 +16,20 @@ import { BannerComponent } from 'shared-ui';
         [buttonText]="'Get Started'"
         [buttonAction]="onGetStarted"
       ></lib-banner>
+
+      <!-- Stats Blocks -->
+      <div class="mt-field">
+        <lib-stats-blocks [stats]="stats"></lib-stats-blocks>
+      </div>
     </div>
   `
 })
 export class ProjectComponent {
+  stats: StatBlock[] = statsData.filter(stat =>
+    ['surveyTotal', 'Employees', 'nextSurvey'].includes(stat.id)
+  );
+
   onGetStarted = (): void => {
-    console.log('Navigate to projects');
-    // Add navigation logic
+    console.log('Start Introduction');
   };
 }

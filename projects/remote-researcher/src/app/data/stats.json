@@ -1,30 +1,58 @@
 [
-  {
-    "icon": "briefcase",
-    "title": "16",
-    "subtitle": "Projects in Total",
-    "gradientFrom": "#3B82F6",
-    "gradientTo": "#1D4ED8"
+  { 
+    "id": "projects",
+    "icon": "projects", 
+    "title": "16", 
+    "subtitle": "Projects in total", 
+    "gradientFrom": "#3B82F6", 
+    "gradientTo": "#1D4ED8" 
   },
-  {
-    "icon": "filetext",
-    "title": "Samen aan Z",
-    "subtitle": "Recently Added",
-    "gradientFrom": "#F97316",
-    "gradientTo": "#EA580C"
+  { 
+    "id": "newItems",
+    "icon": "new", 
+    "title": "Samen aan Z", 
+    "subtitle": "Recently added", 
+    "gradientFrom": "#10B981", 
+    "gradientTo": "#059669" 
   },
-  {
-    "icon": "calendar",
-    "title": "25 Oktober",
-    "subtitle": "Last Login",
-    "gradientFrom": "#EC4899",
-    "gradientTo": "#DB2777"
+  { 
+    "id": "lastLogin",
+    "icon": "login", 
+    "title": "25 Oktober", 
+    "subtitle": "Last Login", 
+    "gradientFrom": "#F59E0B", 
+    "gradientTo": "#D97706" 
   },
-  {
-    "icon": "database",
-    "title": "5",
-    "subtitle": "Supported Data Sources",
-    "gradientFrom": "#8B5CF6",
-    "gradientTo": "#7C3AED"
+  { 
+    "id": "dataSources",
+    "icon": "dataSources", 
+    "title": "2", 
+    "subtitle": "Supported Data Sources", 
+    "gradientFrom": "#8B5CF6", 
+    "gradientTo": "#7C3AED" 
+  },
+  { 
+    "id": "surveyTotal",
+    "icon": "survey", 
+    "title": "285 total surveys", 
+    "subtitle": "Filled in this month", 
+    "gradientFrom": "#3B82F6", 
+    "gradientTo": "#1D4ED8" 
+  },
+  { 
+    "id": "Employees",
+    "icon": "users", 
+    "title": "121/256 employees", 
+    "subtitle": "Filled in surveys this week", 
+    "gradientFrom": "#10B981", 
+    "gradientTo": "#7C3AED" 
+  },
+  { 
+    "id": "nextSurvey",
+    "icon": "calendar", 
+    "title": "27/10/2025 - 12:00", 
+    "subtitle": "Next scheduled survey", 
+    "gradientFrom": "#F59E0B", 
+    "gradientTo": "#D97706" 
   }
 ]

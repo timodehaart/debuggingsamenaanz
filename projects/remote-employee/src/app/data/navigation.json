@@ -8,10 +8,5 @@
     "label": "Samen aan Z",
     "route": "/employee/project",
     "icon": "projects"
-  },
-  {
-    "label": "News Inbox",
-    "route": "/employee/inbox",
-    "icon": "news"
   }
 ]

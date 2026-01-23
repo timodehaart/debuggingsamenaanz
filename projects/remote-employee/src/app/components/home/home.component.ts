@@ -11,7 +11,7 @@ import { BannerComponent } from 'shared-ui';
       <!-- Banner -->
       <lib-banner
         [userName]="userName"
-        [subtitle]="'On this platform, you can explore active research projects, participate in surveys, and analyze insights gathered from supported data sources.'"
+        [subtitle]="'On this platform, you can explore research projects you are part of and view your data. '"
         [buttonText]="'Get Started'"
         [buttonAction]="onGetStarted"
       ></lib-banner>
@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   }
 
   onGetStarted = (): void => {
-    console.log('Navigate to projects');
-    // Add navigation logic
+    console.log('Start Introduction');
   };
 }

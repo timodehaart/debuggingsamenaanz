@@ -31,7 +31,6 @@ export class UsersComponent {
   );
 
   onGetStarted = (): void => {
-    console.log('Navigate to projects');
-    // Add navigation logic
+    console.log('Start Introduction');
   };
 }

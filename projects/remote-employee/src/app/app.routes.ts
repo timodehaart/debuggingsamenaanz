@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { NewsInboxComponent } from './components/news-inbox/news-inbox.component';
 
 export const routes: Routes = [
   {
@@ -15,10 +14,6 @@ export const routes: Routes = [
         {
           path: 'project',
           component: HomeComponent
-        },
-        {
-          path: 'inbox',
-          component: NewsInboxComponent
         },
         {
           path: '',

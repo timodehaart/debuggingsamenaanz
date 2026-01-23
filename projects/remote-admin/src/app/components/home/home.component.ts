@@ -4,18 +4,24 @@ import {
   BannerComponent, 
   StatsBlocksComponent, 
   StatBlock,
-  DropdownFilterComponent,
-  CalendarFilterComponent,
-  SearchFilterComponent,
-  FilterOption,
-  DateRange
+  ProjectFiltersComponent,
+  ProjectFilters,
+  ProjectCardComponent,
+  ProjectCard
 } from 'shared-ui';
 import statsData from '../../data/stats.json';
+import projectsData from '../../data/projects.json';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, BannerComponent, StatsBlocksComponent, DropdownFilterComponent, CalendarFilterComponent, SearchFilterComponent],
+  imports: [
+    CommonModule, 
+    BannerComponent, 
+    StatsBlocksComponent, 
+    ProjectFiltersComponent,
+    ProjectCardComponent
+  ],
   template: `
     <div class="p-field">
       <!-- Banner -->
@@ -31,78 +37,27 @@ import statsData from '../../data/stats.json';
         <lib-stats-blocks [stats]="stats"></lib-stats-blocks>
       </div>
 
-      <!-- Title -->
-      <div class="mt-field text-h2 font-semibold text-ui-text">Projects</div>
-
-      <!-- Filters -->
+      <!-- Projects Section -->
       <div class="mt-field">
-        <div class="flex flex-wrap items-center gap-4">
-          <!-- Name Filter -->
-          <div class="w-64">
-            <lib-dropdown-filter
-              [options]="nameOptions"
-              [placeholder]="'Name'"
-              (filterChange)="onNameFilterChange($event)"
-            ></lib-dropdown-filter>
-          </div>
+        <!-- Title -->
+        <h2 class="text-h2 font-semibold text-ui-text mb-field">Projects</h2>
 
-          <!-- Status Filter -->
-          <div class="w-64">
-            <lib-dropdown-filter
-              [options]="statusOptions"
-              [placeholder]="'Status'"
-              (filterChange)="onStatusFilterChange($event)"
-            ></lib-dropdown-filter>
-          </div>
+        <!-- Filters -->
+        <lib-project-filters
+          (filtersChange)="onFiltersChange($event)"
+        ></lib-project-filters>
 
-          <!-- Public/Private Filter -->
-          <div class="w-64">
-            <lib-dropdown-filter
-              [options]="publicOptions"
-              [placeholder]="'Public'"
-              (filterChange)="onPublicFilterChange($event)"
-            ></lib-dropdown-filter>
-          </div>
-
-          <!-- Date Range Filter -->
-          <div class="flex-1 min-w-[400px]">
-            <lib-calendar-filter
-              [startPlaceholder]="'Start date'"
-              [endPlaceholder]="'End date'"
-              (filterChange)="onDateRangeChange($event)"
-            ></lib-calendar-filter>
-          </div>
+        <!-- Projects Grid -->
+        <div class="mt-field grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          @for (project of filteredProjects; track project.id) {
+            <lib-project-card [project]="project"></lib-project-card>
+          }
         </div>
 
-        <!-- Search Filter -->
-        <div class="mt-4">
-          <lib-search-filter
-            [placeholder]="'Search projects'"
-            (filterChange)="onSearchChange($event)"
-          ></lib-search-filter>
-        </div>
-      </div>
-
-      <!-- Projects List (placeholder for now) -->
-      <div class="mt-4 space-y-4">
-        @for (project of filteredProjects; track project.id) {
-          <div class="rounded-lg bg-ui-bg p-default shadow-component border border-ui-stroke/40">
-            <h3 class="text-h3 font-semibold text-ui-text">{{ project.name }}</h3>
-            <p class="text-p text-ui-text-muted mt-xs">{{ project.description }}</p>
-            <div class="flex gap-2 mt-2">
-              <span class="px-2 py-1 text-small rounded bg-ui-action/10 text-ui-action">
-                {{ project.status }}
-              </span>
-              <span class="px-2 py-1 text-small rounded bg-ui-stroke/20 text-ui-text">
-                {{ project.visibility }}
-              </span>
-            </div>
-          </div>
-        }
-
+        <!-- Empty State -->
         @if (filteredProjects.length === 0) {
-          <div class="text-center py-8 text-ui-text-muted">
-            No projects found matching your filters
+          <div class="text-center py-12 text-ui-text-muted">
+            <p class="text-p">No projects found matching your filters</p>
           </div>
         }
       </div>
@@ -115,70 +70,8 @@ export class HomeComponent implements OnInit {
     ['projects', 'newItems', 'lastLogin', 'dataSources'].includes(stat.id)
   );
 
-  // Filter Options
-  nameOptions: FilterOption[] = [
-    { value: 'project-a', label: 'Project Alpha' },
-    { value: 'project-b', label: 'Project Beta' },
-    { value: 'project-g', label: 'Project Gamma' },
-    { value: 'samen-z', label: 'Samen aan Z' }
-  ];
-
-  statusOptions: FilterOption[] = [
-    { value: 'active', label: 'Active' },
-    { value: 'completed', label: 'Completed' },
-    { value: 'draft', label: 'Draft' },
-    { value: 'archived', label: 'Archived' }
-  ];
-
-  publicOptions: FilterOption[] = [
-    { value: 'public', label: 'Public' },
-    { value: 'private', label: 'Private' },
-    { value: 'restricted', label: 'Restricted' }
-  ];
-
-  // Mock data for projects
-  allProjects = [
-    {
-      id: 1,
-      name: 'Project Alpha',
-      description: 'Research on AI applications',
-      status: 'active',
-      visibility: 'public',
-      createdDate: '2024-01-15'
-    },
-    {
-      id: 2,
-      name: 'Project Beta',
-      description: 'Healthcare data analysis',
-      status: 'completed',
-      visibility: 'private',
-      createdDate: '2024-03-20'
-    },
-    {
-      id: 3,
-      name: 'Samen aan Z',
-      description: 'Community wellness research',
-      status: 'active',
-      visibility: 'public',
-      createdDate: '2024-06-10'
-    }
-  ];
-
-  filteredProjects = [...this.allProjects];
-  
-  // Active filters
-  private activeFilters = {
-    name: null as string | null,
-    status: null as string | null,
-    visibility: null as string | null,
-    search: '',
-    startDate: null as string | null,
-    endDate: null as string | null
-  };
-
-  get filteredProjectsCount(): number {
-    return this.filteredProjects.length;
-  }
+  allProjects: ProjectCard[] = projectsData;
+  filteredProjects: ProjectCard[] = [];
 
   ngOnInit(): void {
     const user = localStorage.getItem('currentUser');
@@ -186,76 +79,52 @@ export class HomeComponent implements OnInit {
       const userData = JSON.parse(user);
       this.userName = userData.name;
     }
-  }
 
-  onNameFilterChange(option: FilterOption | null): void {
-    this.activeFilters.name = option?.value || null;
-    this.applyFilters();
-  }
-
-  onStatusFilterChange(option: FilterOption | null): void {
-    this.activeFilters.status = option?.value || null;
-    this.applyFilters();
-  }
-
-  onPublicFilterChange(option: FilterOption | null): void {
-    this.activeFilters.visibility = option?.value || null;
-    this.applyFilters();
-  }
-
-  onDateRangeChange(dateRange: DateRange): void {
-    this.activeFilters.startDate = dateRange.startDate;
-    this.activeFilters.endDate = dateRange.endDate;
-    this.applyFilters();
-  }
-
-  onSearchChange(searchTerm: string): void {
-    this.activeFilters.search = searchTerm.toLowerCase();
-    this.applyFilters();
-  }
-
-  private applyFilters(): void {
-    this.filteredProjects = this.allProjects.filter(project => {
-      // Name filter
-      if (this.activeFilters.name) {
-        const projectSlug = project.name.toLowerCase().replace(/\s+/g, '-');
-        if (!projectSlug.includes(this.activeFilters.name)) {
-          return false;
-        }
-      }
-
-      // Status filter
-      if (this.activeFilters.status && project.status !== this.activeFilters.status) {
-        return false;
-      }
-
-      // Visibility filter
-      if (this.activeFilters.visibility && project.visibility !== this.activeFilters.visibility) {
-        return false;
-      }
-
-      // Search filter
-      if (this.activeFilters.search) {
-        const searchableText = `${project.name} ${project.description}`.toLowerCase();
-        if (!searchableText.includes(this.activeFilters.search)) {
-          return false;
-        }
-      }
-
-      // Date range filter
-      if (this.activeFilters.startDate) {
-        if (project.createdDate < this.activeFilters.startDate) {
-          return false;
-        }
-      }
-      if (this.activeFilters.endDate) {
-        if (project.createdDate > this.activeFilters.endDate) {
-          return false;
-        }
-      }
-
-      return true;
+    // Initialize with all projects
+    this.filteredProjects = [...this.allProjects];
+    this.applyFilters({
+      search: '',
+      sortBy: 'recent',
+      projectType: 'all'
     });
+  }
+
+  onFiltersChange(filters: ProjectFilters): void {
+    this.applyFilters(filters);
+  }
+
+  private applyFilters(filters: ProjectFilters): void {
+    let filtered = [...this.allProjects];
+
+    // Apply project type filter
+    if (filters.projectType === 'my-projects') {
+      filtered = filtered.filter(p => p.isMyProject);
+    } else if (filters.projectType === 'available') {
+      filtered = filtered.filter(p => !p.isMyProject);
+    }
+
+    // Apply search filter
+    if (filters.search) {
+      const searchLower = filters.search.toLowerCase();
+      filtered = filtered.filter(p => 
+        p.title.toLowerCase().includes(searchLower) ||
+        p.dataSources.some(ds => ds.toLowerCase().includes(searchLower))
+      );
+    }
+
+    // Apply sorting
+    if (filters.sortBy === 'alphabetical') {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      // Sort by most recent
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.createdDate || '').getTime();
+        const dateB = new Date(b.createdDate || '').getTime();
+        return dateB - dateA;
+      });
+    }
+
+    this.filteredProjects = filtered;
   }
 
   onGetStarted = (): void => {

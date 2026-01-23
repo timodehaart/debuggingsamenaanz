@@ -9,6 +9,8 @@ export * from './lib/components/stats-blocks/stats-blocks.component';
 export * from './lib/components/filters/dropdown-filter.component';
 export * from './lib/components/filters/calendar-filter.component';
 export * from './lib/components/filters/search-filter.component';
+export * from './lib/components/project-filters/project-filters.component';
+export * from './lib/components/project-cards/project-card.component';
 
 // Models
 export * from './lib/models/navigation.model';

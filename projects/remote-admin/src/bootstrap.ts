@@ -6,6 +6,5 @@ import { routes } from './app/app.routes';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
-    // Add any other providers your remote needs
   ]
 }).catch(err => console.error(err));

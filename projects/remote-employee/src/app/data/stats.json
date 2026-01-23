@@ -1,0 +1,30 @@
+[
+  {
+    "icon": "activity",
+    "title": "5",
+    "subtitle": "Pending Tasks",
+    "gradientFrom": "#EF4444",
+    "gradientTo": "#DC2626"
+  },
+  {
+    "icon": "award",
+    "title": "12",
+    "subtitle": "Completed This Week",
+    "gradientFrom": "#10B981",
+    "gradientTo": "#059669"
+  },
+  {
+    "icon": "briefcase",
+    "title": "2",
+    "subtitle": "Active Projects",
+    "gradientFrom": "#3B82F6",
+    "gradientTo": "#1D4ED8"
+  },
+  {
+    "icon": "calendar",
+    "title": "25 Okt",
+    "subtitle": "Last Activity",
+    "gradientFrom": "#8B5CF6",
+    "gradientTo": "#7C3AED"
+  }
+]

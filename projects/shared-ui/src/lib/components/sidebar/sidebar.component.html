@@ -1,20 +1,22 @@
-<div class="flex min-h-screen bg-background">
+<!-- Layout wrapper -->
+<div class="flex min-h-screen bg-ui-bg">
   <!-- Sidebar -->
-  <aside class="w-64 bg-background border-default border-stroke flex flex-col">
-
+  <aside class="w-64 bg-ui-bg border-r border-ui-stroke/40 flex flex-col">
     <!-- Profile -->
     <div class="m-default">
-      <div class="flex items-center space-x-5">
-        <div class="w-12 h-12 rounded-full flex items-center justify-center">
-          <img src="/assets/emma.png" alt="profile pic" class="w-12 h-12 rounded-full">
-        </div>
+      <div class="flex items-center gap-image">
+        <img
+          src="/assets/emma.png"
+          alt="profile pic"
+          class="w-12 h-12 rounded-full"
+        />
 
         @if (userInfo) {
-          <div>
-            <div class="text-h2 font-medium text-primaryText">
+          <div class="min-w-0">
+            <div class="text-h3 font-medium text-ui-text truncate">
               {{ userInfo.name }}
             </div>
-            <div class="text-p font-regular text-primaryText">
+            <div class="text-p font-regular text-ui-text-muted truncate">
               {{ userInfo.role }}
             </div>
           </div>
@@ -23,93 +25,74 @@
     </div>
 
     <!-- Divider -->
-    <div class="mx-default border-b border-stroke"></div>
+    <div class="mx-default border-b border-ui-stroke"></div>
 
     <!-- Navigation -->
-    <nav class="flex-1 m-default overflow-y-auto space-y-1">
-      @for (item of navigationItems; track item.route) {
-        <a
-          [routerLink]="item.route"
-          (click)="setActiveItem(item.route)"
-          [class.bg-actionButton]="isActive(item.route)"
-          [class.text-actionButtonText]="isActive(item.route)"
-          [class.text-primaryText]="!isActive(item.route)"
-          [ngClass]="{
-            'hover:bg-sidebarHover': !isActive(item.route),
-            'cursor-default': isActive(item.route),
-            'cursor-pointer': !isActive(item.route)
-          }"
-          class="w-full block text-left p-text text-p font-regular rounded-lg"
-        >
-          <span class="flex items-center gap-3">
-            @if (item.icon && iconMap[item.icon]) {
-              <lucide-icon class="w-4 h-4" [img]="iconMap[item.icon]"></lucide-icon>
-            }
-            <span>{{ item.label }}</span>
-          </span>
-        </a>
-      }
+    <nav class="flex-1 m-default overflow-y-auto">
+      <div class="space-y-stack">
+        @for (item of navigationItems; track item.route) {
+          <a
+            [routerLink]="item.route"
+            (click)="setActiveItem(item.route)"
+            class="w-full block text-left p-text text-p font-regular rounded-lg"
+            [ngClass]="isActive(item.route)
+              ? 'bg-ui-action text-ui-action-text cursor-default'
+              : 'text-ui-text hover:bg-ui-hover-sidebar cursor-pointer'"
+          >
+            <span class="flex items-center gap-stack">
+              @if (item.icon && iconMap[item.icon]) {
+                <lucide-icon class="w-4 h-4" [img]="iconMap[item.icon]"></lucide-icon>
+              }
+              <span class="truncate">{{ item.label }}</span>
+            </span>
+          </a>
+        }
+      </div>
     </nav>
 
     <!-- Divider -->
-    <div class="mx-default border-b border-stroke"></div>
+    <div class="mx-default border-b border-ui-stroke"></div>
 
     <!-- Bottom Section -->
     <div class="m-default">
-      <div class="space-y-1">
-
+      <div class="space-y-stack">
         <!-- Notifications -->
         <button
           type="button"
           (click)="setActiveItem('notifications')"
-          [class.bg-actionButton]="activeItem === 'notifications'"
-          [class.text-actionButtonText]="activeItem === 'notifications'"
-          [class.text-primaryText]="activeItem !== 'notifications'"
-          [ngClass]="{
-            'hover:bg-sidebarHover': activeItem !== 'notifications',
-            'cursor-default': activeItem === 'notifications',
-            'cursor-pointer': activeItem !== 'notifications'
-          }"
-          class="w-full text-left p-text text-p font-regular flex items-center gap-3 rounded-lg"
+          class="w-full text-left p-text text-p font-regular flex items-center gap-stack rounded-lg"
+          [ngClass]="activeItem === 'notifications'
+            ? 'bg-ui-action text-ui-action-text cursor-default'
+            : 'text-ui-text hover:bg-ui-hover-sidebar cursor-pointer'"
         >
           <lucide-icon [img]="Bell" class="w-4 h-4"></lucide-icon>
-          <span>Notifications</span>
+          <span class="truncate">Notifications</span>
         </button>
 
         <!-- Settings -->
         <button
           type="button"
           (click)="setActiveItem('settings')"
-          [class.bg-actionButton]="activeItem === 'settings'"
-          [class.text-actionButtonText]="activeItem === 'settings'"
-          [class.text-primaryText]="activeItem !== 'settings'"
-          [ngClass]="{
-            'hover:bg-sidebarHover': activeItem !== 'settings',
-            'cursor-default': activeItem === 'settings',
-            'cursor-pointer': activeItem !== 'settings'
-          }"
-          class="w-full text-left p-text text-p font-regular flex items-center gap-3 rounded-lg"
+          class="w-full text-left p-text text-p font-regular flex items-center gap-stack rounded-lg"
+          [ngClass]="activeItem === 'settings'
+            ? 'bg-ui-action text-ui-action-text cursor-default'
+            : 'text-ui-text hover:bg-ui-hover-sidebar cursor-pointer'"
         >
           <lucide-icon [img]="Settings" class="w-4 h-4"></lucide-icon>
-          <span>Settings</span>
+          <span class="truncate">Settings</span>
         </button>
 
         <!-- Help -->
         <button
           type="button"
           (click)="setActiveItem('help')"
-          [class.bg-actionButton]="activeItem === 'help'"
-          [class.text-actionButtonText]="activeItem === 'help'"
-          [class.text-primaryText]="activeItem !== 'help'"
-          [ngClass]="{
-            'hover:bg-sidebarHover': activeItem !== 'help',
-            'cursor-default': activeItem === 'help',
-            'cursor-pointer': activeItem !== 'help'
-          }"
-          class="w-full text-left p-text text-p font-regular flex items-center gap-3 rounded-lg"
+          class="w-full text-left p-text text-p font-regular flex items-center gap-stack rounded-lg"
+          [ngClass]="activeItem === 'help'
+            ? 'bg-ui-action text-ui-action-text cursor-default'
+            : 'text-ui-text hover:bg-ui-hover-sidebar cursor-pointer'"
         >
           <lucide-icon [img]="MessageCircleQuestionMark" class="w-4 h-4"></lucide-icon>
-          <span>Help / FAQ</span>
+          <span class="truncate">Help / FAQ</span>
         </button>
       </div>
 
@@ -117,10 +100,10 @@
       <button
         type="button"
         (click)="onLogout()"
-        class="mt-1 w-full space-y-1 text-left p-text text-p font-regular flex items-center gap-3 rounded-lg text-primaryText hover:bg-sidebarHover"
+        class="mt-stack w-full text-left p-text text-p font-regular flex items-center gap-stack rounded-lg text-ui-text hover:bg-ui-hover-sidebar"
       >
         <lucide-icon [img]="LogOut" class="w-4 h-4"></lucide-icon>
-        <span>Log out</span>
+        <span class="truncate">Log out</span>
       </button>
     </div>
   </aside>
@@ -129,4 +112,7 @@
   <div class="flex-1 overflow-auto">
     <ng-content></ng-content>
   </div>
+
+  <!-- Right Panel -->
+  <lib-right-panel></lib-right-panel>
 </div>

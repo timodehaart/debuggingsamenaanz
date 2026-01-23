@@ -5,10 +5,15 @@ import { TemplatePopupComponent } from '../template-popup/template-popup.compone
 
 @Component({
   selector: 'app-news-dashboard',
-  imports: [BannerComponent,  ActionButtonComponent, TemplatePopupComponent],
+  imports: [BannerComponent, ActionButtonComponent, TemplatePopupComponent],
   templateUrl: './news-dashboard.component.html',
 })
 export class NewsDashboardComponent {
+
+  showPopUp() {
+
+  }
+
   userName: string = '';
 
   ngOnInit(): void {

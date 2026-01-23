@@ -14,11 +14,12 @@ import {
   LogOut
 } from 'lucide-angular';
 import { UserInfo, NavigationItem } from '../../models/navigation.model';
+import { RightPanelComponent } from '../right-panel/right-panel.component';
 
 @Component({
   selector: 'lib-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule, LucideAngularModule],
+  imports: [CommonModule, RouterModule, LucideAngularModule, RightPanelComponent],
   templateUrl: './sidebar.component.html',
   styles: []
 })

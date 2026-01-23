@@ -1,40 +1,53 @@
-<div class="min-h-screen flex items-center justify-center bg-background p-text">
-  <div class="bg-background rounded-lg shadow-component w-full max-w-md p-box box-border">
-    <h2 class="text-h1 font-medium text-center mb-default">SAZ Platform Login</h2>
+<div class="min-h-screen flex items-center justify-center bg-ui-bg p-text">
+  <div class="w-full max-w-md rounded-lg bg-ui-bg p-box shadow-component border-default box-border">
+    <h2 class="mb-field text-h2 font-medium text-center text-ui-text">
+      SAZ Platform Login
+    </h2>
 
-    <form (ngSubmit)="onSubmit()">
-      <div class="mb-default">
-        <label class="block text-primaryText mb-1">Email</label>
+    <form (ngSubmit)="onSubmit()" class="space-y-field">
+      <!-- Email -->
+      <div>
+        <label class="mb-xs block text-p font-medium text-ui-text">
+          Email
+        </label>
         <input
           type="email"
           [(ngModel)]="email"
           name="email"
-          class="w-full box-border p-text border-default rounded-lg bg-inputBackground focus:outline-none focus:ring-2 focus:ring-actionButton"
+          class="w-full box-border rounded-lg bg-ui-bg p-text text-p shadow-component
+                 focus:outline-none focus:ring-0 focus:shadow-component"
           required
         />
       </div>
 
-      <div class="mb-default">
-        <label class="block text-primaryText mb-1">Password</label>
+      <!-- Password -->
+      <div>
+        <label class="mb-xs block text-p font-medium text-ui-text">
+          Password
+        </label>
         <input
           type="password"
           [(ngModel)]="password"
           name="password"
-          class="w-full box-border p-text border-default rounded-lg bg-inputBackground focus:outline-none focus:ring-2 focus:ring-actionButton"
+          class="w-full box-border rounded-lg bg-ui-bg p-text text-p shadow-component
+                 focus:outline-none focus:ring-0 focus:shadow-component"
           required
         />
       </div>
 
+      <!-- Error -->
       @if (error) {
-        <div class="border-errorBorder text-errorMessageText border-default p-text rounded-lg mb-default box-border">
-            {{error}}
+        <div class="rounded-lg bg-ui-error/5 p-text text-p text-ui-error shadow-component box-border">
+          {{ error }}
         </div>
       }
 
+      <!-- Submit -->
       <button
         type="submit"
         [disabled]="loading"
-        class="w-full bg-actionButton text-actionButtonText py-button rounded-lg hover:bg-actionButton transition disabled:bg-disabledButton box-border"
+        class="w-full rounded-lg bg-ui-action py-button text-p font-medium text-ui-action-text
+               transition hover:bg-ui-action-hover disabled:bg-ui-action-disabled shadow-component box-border"
       >
         {{ loading ? 'Logging in...' : 'Login' }}
       </button>

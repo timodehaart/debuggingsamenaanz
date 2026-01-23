@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BannerComponent } from 'shared-ui';
+import { BannerComponent, StatsBlocksComponent, StatBlock } from 'shared-ui';
+import statsData from '../../data/stats.json';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, BannerComponent],
+  imports: [CommonModule, BannerComponent, StatsBlocksComponent],
   template: `
-    <div class="p-6">
+    <div class="p-field">
       <!-- Banner -->
       <lib-banner
         [userName]="userName"
@@ -16,26 +17,18 @@ import { BannerComponent } from 'shared-ui';
         [buttonAction]="onGetStarted"
       ></lib-banner>
 
-      <!-- Rest of Dashboard Content -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-gray-500 text-sm">Total Users</h3>
-          <p class="text-3xl font-bold text-gray-800 mt-2">1,234</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-gray-500 text-sm">Active Projects</h3>
-          <p class="text-3xl font-bold text-gray-800 mt-2">42</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow">
-          <h3 class="text-gray-500 text-sm">Pending Tasks</h3>
-          <p class="text-3xl font-bold text-gray-800 mt-2">18</p>
-        </div>
+      <!-- Stats Blocks -->
+      <div class="mt-field">
+        <lib-stats-blocks [stats]="stats"></lib-stats-blocks>
       </div>
     </div>
   `
 })
 export class HomeComponent implements OnInit {
   userName: string = '';
+  stats: StatBlock[] = statsData.filter(stat =>
+    ['projects', 'newItems', 'lastLogin', 'dataSources'].includes(stat.id)
+  );
 
   ngOnInit(): void {
     const user = localStorage.getItem('currentUser');
@@ -46,7 +39,6 @@ export class HomeComponent implements OnInit {
   }
 
   onGetStarted = (): void => {
-    console.log('Navigate to projects');
-    // Add navigation logic
+    console.log('Start Introduction');
   };
 }

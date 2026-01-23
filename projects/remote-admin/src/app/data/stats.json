@@ -1,0 +1,50 @@
+[
+  { 
+    "id": "projects",
+    "icon": "projects", 
+    "title": "16", 
+    "subtitle": "Projects in total", 
+    "gradientFrom": "#3B82F6", 
+    "gradientTo": "#1D4ED8" 
+  },
+  { 
+    "id": "newItems",
+    "icon": "new", 
+    "title": "Samen aan Z", 
+    "subtitle": "Recently added", 
+    "gradientFrom": "#10B981", 
+    "gradientTo": "#059669" 
+  },
+  { 
+    "id": "lastLogin",
+    "icon": "login", 
+    "title": "25 Oktober", 
+    "subtitle": "Last Login", 
+    "gradientFrom": "#F59E0B", 
+    "gradientTo": "#D97706" 
+  },
+  { 
+    "id": "dataSources",
+    "icon": "dataSources", 
+    "title": "2", 
+    "subtitle": "Supported Data Sources", 
+    "gradientFrom": "#8B5CF6", 
+    "gradientTo": "#7C3AED" 
+  },
+  { 
+    "id": "users",
+    "icon": "users", 
+    "title": "145", 
+    "subtitle": "Users", 
+    "gradientFrom": "#3B82F6", 
+    "gradientTo": "#1D4ED8" 
+  },
+  { 
+    "id": "organizations",
+    "icon": "organizations", 
+    "title": "2", 
+    "subtitle": "Participating Organizations", 
+    "gradientFrom": "#10B981", 
+    "gradientTo": "#059669" 
+  }
+]

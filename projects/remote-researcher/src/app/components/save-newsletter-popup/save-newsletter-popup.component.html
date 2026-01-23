@@ -1,0 +1,71 @@
+<div
+  class="w-auto h-screen grid place-items-center justify-center bg-black bg-opacity-40 z-50"
+>
+  <content
+    class="bg-background rounded-lg p-6 m-10 grid grid-row-3 space-y-4 w-full"
+  >
+    <h1 class="font-bold text-xl">Publish Newsletter</h1>
+
+    <main class="grid grid-cols-2 md:grid-cols-2 gap-6 mt-6">
+      <section>
+        <h2 class="font-bold text-xl">Newsletter setup</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <p class="font-semibold">Newsletter status</p>
+            <lib-dropdown-menu [options]="status"> </lib-dropdown-menu>
+          </div>
+          <div>
+            <p class="font-semibold">Visibility</p>
+            <lib-dropdown-menu [options]="visibility"> </lib-dropdown-menu>
+          </div>
+          <div class="col-span-2">
+            <p class="font-semibold">Organisation(s)</p>
+            <lib-dropdown-menu [options]="organisation"> </lib-dropdown-menu>
+          </div>
+          <div class="col-span-2">
+            <p class="font-semibold">Department(s)</p>
+            <lib-dropdown-menu [options]="department"> </lib-dropdown-menu>
+            <p class="text-primaryText text-sm">
+              Visible to workers in set organisation departments.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2 class="font-bold text-xl">Publish settings</h2>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2">
+            <p class="font-semibold">Publish Mode</p>
+            <lib-dropdown-menu [options]="publishMode"> </lib-dropdown-menu>
+            <p class="text-primaryText text-sm w-64">
+              Choose whether to publish immediately, schedule for later, or to
+              not schedule yet.
+            </p>
+          </div>
+          <div>
+            <p class="font-semibold">Publish Date</p>
+            <input
+              type="date"
+              class="block w-full h-9 p-2 text-sm text-primaryText font-medium transition duration-75 border border-stroke rounded-lg focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-white"
+            />
+          </div>
+          <div>
+            <p class="font-semibold">Publish Time</p>
+            <input
+              type="time"
+              class="block w-full h-9 p-2 text-sm text-primaryText font-medium transition duration-75 border border-stroke rounded-lg focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-white"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <nav class="flex justify-end">
+      <lib-action-button
+        [buttonText]="'Publish newsletter'"
+        (click)="navToNewsDashboard()"
+      >
+      </lib-action-button>
+    </nav>
+  </content>
+</div>

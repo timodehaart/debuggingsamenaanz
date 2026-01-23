@@ -1,45 +1,38 @@
-<div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 via-blue-500 to-teal-400 p-6 mb-6">
-
-  <div class="relative z-10 flex items-center justify-between">
-
+<!-- Banner -->
+<div class="relative overflow-hidden rounded-lg bg-gradient-to-r from-ui-banner-gradient1 to-ui-banner-gradient2 p-box shadow-component">
+  <div class="relative flex items-center justify-between">
     <!-- Left Content -->
-    <div class="flex-1 max-w-2xl xl:pr-72">
-      <h1 class="text-3xl font-bold text-white mb-3">
+    <div class="flex-1 max-w-2xl lg:pr-72">
+      <h1 class="mb-default text-h1 font-semibold text-ui-banner-text">
         @if (userName) {
-          Welcome, {{userName}}!
+          Welcome, {{ userName }}!
         } @else {
-          {{title}}
+          {{ title }}
         }
       </h1>
 
-      <p class="text-white text-opacity-90 mb-6 text-base leading-relaxed max-w-xl">
-        {{subtitle}}
+      <p class="mb-default max-w-2xl text-p font-regular text-ui-banner-text/90">
+        {{ subtitle }}
       </p>
 
       @if (buttonText) {
         <button
+          type="button"
           (click)="buttonAction && buttonAction()"
-          class="px-6 py-3 bg-white text-indigo-600 rounded-lg font-semibold hover:bg-opacity-90 transition-all shadow-lg hover:shadow-xl"
+          class="rounded-lg bg-ui-banner-buttonBg px-button py-button text-p font-semibold text-ui-text hover:bg-ui-banner-buttonBg/90 cursor-pointer"
         >
-          {{buttonText}}
+          {{ buttonText }}
         </button>
       }
     </div>
 
     <!-- Right Illustration -->
-    <div class="hidden xl:block pointer-events-none absolute right-4 top-0 bottom-0">
+    <div class="pointer-events-none absolute right-4 top-0 bottom-0 hidden lg:block">
       <img
-        src="assets/banner-illustration.svg" 
+        src="assets/banner-illustration.svg"
         alt="Banner Illustration"
         class="h-full w-auto object-contain"
-      >
+      />
     </div>
   </div>
-
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-10">
-    <div class="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl transform translate-x-1/2 translate-y-1/2"></div>
-  </div>
-
 </div>

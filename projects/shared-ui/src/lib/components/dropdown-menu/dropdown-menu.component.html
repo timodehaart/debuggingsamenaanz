@@ -1,0 +1,7 @@
+<select
+  class="block w-full  h-9 p-2 text-sm text-primaryText font-medium transition duration-75 border border-stroke rounded-lg focus:border-blue-600 focus:ring-1 focus:ring-inset focus:ring-blue-600 bg-white"
+>
+  @for (option of options; track option) {
+    <option>{{ option }}</option>
+  }
+</select>

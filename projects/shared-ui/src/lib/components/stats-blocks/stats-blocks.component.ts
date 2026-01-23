@@ -28,11 +28,18 @@ export interface StatBlock {
   template: `
     <div
       class="grid gap-stats"
+      [ngClass]="{
+        'justify-start': stats.length < 3,
+        'justify-stretch': stats.length >= 3
+      }"
       [ngStyle]="{
-        'grid-template-columns': 'repeat(auto-fit, minmax(240px, 1fr))'
+        'grid-template-columns':
+          stats.length < 3
+            ? 'repeat(auto-fill, minmax(240px, 320px))'
+            : 'repeat(auto-fit, minmax(240px, 1fr))'
       }"
     >
-      @for (stat of stats; track stat.title) {
+      @for (stat of stats; track stat.id) {
         <div
           class="flex items-center rounded-lg bg-ui-bg p-default shadow-component border border-ui-stroke/40"
         >
@@ -50,7 +57,7 @@ export interface StatBlock {
           >
             <lucide-icon
               [img]="iconMap[stat.icon]"
-              class="h-4 w-4 text-ui-text-inverse"
+              class="h-5 w-5 text-ui-text-inverse"
             ></lucide-icon>
           </div>
 
@@ -63,12 +70,7 @@ export interface StatBlock {
               {{ stat.title }}
             </div>
 
-            <div
-              class="mt-xs text-p text-ui-text-DEFAULT"
-              [class.truncate]="stats.length >= 4"
-              [class.whitespace-normal]="stats.length < 4"
-              [class.break-words]="stats.length < 4"
-            >
+            <div class="mt-xs text-p text-ui-text-DEFAULT truncate">
               {{ stat.subtitle }}
             </div>
           </div>

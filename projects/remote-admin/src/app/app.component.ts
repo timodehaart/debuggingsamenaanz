@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { SidebarComponent, NavigationItem, UserInfo } from 'shared-ui';
+import { DashboardLayoutComponent, NavigationItem, UserInfo } from 'shared-ui';
 import { AdminDataService } from './services/admin-data.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterModule, SidebarComponent],
+  imports: [CommonModule, RouterModule, DashboardLayoutComponent],
   providers: [AdminDataService],
   template: `
-    <lib-sidebar [navigationItems]="navigationItems" [userInfo]="userInfo">
+    <lib-dashboard-layout 
+      [navigationItems]="navigationItems" 
+      [userInfo]="userInfo">
       <router-outlet></router-outlet>
-    </lib-sidebar>
+    </lib-dashboard-layout>
   `
 })
 export class AppComponent implements OnInit {

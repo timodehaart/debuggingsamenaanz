@@ -21,6 +21,9 @@ import statsData from '../../data/stats.json';
       <div class="mt-field">
         <lib-stats-blocks [stats]="stats"></lib-stats-blocks>
       </div>
+
+      <!-- Title -->
+      <div class="mt-field text-h2 font-semibold text-ui-text">Projects</div>
     </div>
   `
 })

@@ -1,8 +1,10 @@
 export interface NavigationItem {
   label: string;
   route: string;
-  icon?: any;
+  icon?: string;
   children?: NavigationItem[];
+  isProject?: boolean;
+  isExpanded?: boolean;
 }
 
 export interface UserInfo {

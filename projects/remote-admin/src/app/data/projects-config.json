@@ -1,0 +1,20 @@
+[
+  {
+    "id": "samen-aan-z",
+    "name": "Samen aan Z",
+    "dataSources": [
+      {
+        "id": "survey-dashboard",
+        "name": "Survey Dashboard",
+        "route": "/admin/project/samen-aan-z/survey-dashboard",
+        "type": "survey"
+      },
+      {
+        "id": "wearables",
+        "name": "Wearables",
+        "route": "/admin/project/samen-aan-z/wearables",
+        "type": "wearables"
+      }
+    ]
+  }
+]

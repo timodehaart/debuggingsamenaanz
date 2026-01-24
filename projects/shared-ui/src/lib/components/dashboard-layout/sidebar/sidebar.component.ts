@@ -20,9 +20,9 @@ import { UserInfo, NavigationItem } from '../../../models/navigation.model';
   standalone: true,
   imports: [CommonModule, RouterModule, LucideAngularModule],
   template: `
-    <aside class="w-64 h-screen bg-ui-bg border-r border-ui-stroke/40 flex flex-col">
+    <aside class="w-64 h-screen bg-ui-bg border-r border-ui-stroke/40 flex flex-col overflow-hidden">
     <!-- Profile -->
-    <div class="m-default">
+    <div class="m-default flex-shrink-0">
       <div class="flex items-center gap-image">
         <img
           src="/assets/emma.png"
@@ -44,7 +44,7 @@ import { UserInfo, NavigationItem } from '../../../models/navigation.model';
     </div>
 
     <!-- Divider -->
-    <div class="mx-default border-b border-ui-stroke"></div>
+    <div class="mx-default border-b border-ui-stroke flex-shrink-0"></div>
 
     <!-- Navigation -->
     <nav class="flex-1 m-default overflow-y-auto">
@@ -70,10 +70,10 @@ import { UserInfo, NavigationItem } from '../../../models/navigation.model';
     </nav>
 
     <!-- Divider -->
-    <div class="mx-default border-b border-ui-stroke"></div>
+    <div class="mx-default border-b border-ui-stroke flex-shrink-0"></div>
 
     <!-- Bottom Section -->
-    <div class="m-default">
+    <div class="m-default flex-shrink-0">
       <div class="space-y-stack">
         <!-- Notifications -->
         <button

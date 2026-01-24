@@ -10,19 +10,19 @@ import { UserInfo, NavigationItem } from '../../models/navigation.model';
   imports: [CommonModule, SidebarComponent, RightPanelComponent],
   template: `
     <!-- Layout wrapper -->
-    <div class="flex min-h-screen bg-ui-bg">
-      <!-- Sidebar -->
+    <div class="flex h-screen bg-ui-bg overflow-hidden">
+      <!-- Sidebar - Fixed -->
       <lib-sidebar 
         [userInfo]="userInfo"
         [navigationItems]="navigationItems">
       </lib-sidebar>
 
-      <!-- Content Area -->
-      <div class="flex-1 overflow-auto">
+      <!-- Content Area - Scrollable -->
+      <div class="flex-1 overflow-y-auto">
         <ng-content></ng-content>
       </div>
 
-      <!-- Right Panel -->
+      <!-- Right Panel - Fixed -->
       <lib-right-panel></lib-right-panel>
     </div>
   `,

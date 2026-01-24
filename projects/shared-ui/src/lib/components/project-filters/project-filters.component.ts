@@ -52,7 +52,7 @@ export interface ProjectFilters {
         <select
           [(ngModel)]="filters.sortBy"
           (ngModelChange)="onFilterChange()"
-          class="w-full appearance-none rounded-lg bg-ui-bg px-text py-text pr-10 text-p text-ui-text
+          class="w-full appearance-none rounded-lg bg-ui-bg px-text py-text pr-4 text-p text-ui-text
                  shadow-component border border-ui-stroke/40
                  hover:shadow-component focus:outline-none focus:shadow-component
                  transition-shadow cursor-pointer"
@@ -73,7 +73,7 @@ export interface ProjectFilters {
         <select
           [(ngModel)]="filters.projectType"
           (ngModelChange)="onFilterChange()"
-          class="w-full appearance-none rounded-lg bg-ui-bg px-text py-text pr-10 text-p text-ui-text
+          class="w-full appearance-none rounded-lg bg-ui-bg px-text py-text pr-4 text-p text-ui-text
                  shadow-component border border-ui-stroke/40
                  hover:shadow-component focus:outline-none focus:shadow-component
                  transition-shadow cursor-pointer"

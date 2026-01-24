@@ -154,6 +154,12 @@ export class HomeComponent implements OnInit {
 
     // Apply sorting
     filtered.sort((a, b) => {
+      // First, sort by isMyProject (true first)
+      if (a.isMyProject !== b.isMyProject) {
+        return a.isMyProject ? -1 : 1;
+      }
+
+      // Then apply secondary sorting
       if (filters.sortBy === 'alphabetical') {
         return a.title.localeCompare(b.title);
       } else {

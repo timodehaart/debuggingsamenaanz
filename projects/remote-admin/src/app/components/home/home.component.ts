@@ -48,16 +48,32 @@ import projectsData from '../../data/projects.json';
         ></lib-project-filters>
 
         <!-- Projects Grid -->
-        <div class="mt-field grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          @for (project of filteredProjects; track project.id) {
-            <lib-project-card [project]="project"></lib-project-card>
-          }
-        </div>
-
-        <!-- Empty State -->
-        @if (filteredProjects.length === 0) {
-          <div class="text-center py-12 text-ui-text-muted">
-            <p class="text-p">No projects found matching your filters</p>
+        @if (isLoading) {
+          <div class="mt-field flex justify-center p-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-ui-action"></div>
+          </div>
+        } @else if (filteredProjects.length === 0) {
+          <!-- Empty State -->
+          <div class="mt-field text-center py-12 rounded-lg bg-ui-bg border border-ui-stroke/40">
+            <p class="text-p text-ui-text-muted">No projects found matching your filters</p>
+            <button
+              type="button"
+              (click)="clearFilters()"
+              class="mt-4 px-button py-button text-p text-ui-action hover:underline"
+            >
+              Clear filters
+            </button>
+          </div>
+        } @else {
+          <div class="mt-field grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            @for (project of filteredProjects; track project.id) {
+              <lib-project-card 
+                [project]="project"
+                (visitProject)="handleVisitProject($event)"
+                (requestAccess)="handleRequestAccess($event)"
+                (menuClick)="handleMenuClick($event)"
+              ></lib-project-card>
+            }
           </div>
         }
       </div>
@@ -66,46 +82,70 @@ import projectsData from '../../data/projects.json';
 })
 export class HomeComponent implements OnInit {
   userName: string = '';
-  stats: StatBlock[] = statsData.filter(stat =>
-    ['projects', 'newItems', 'lastLogin', 'dataSources'].includes(stat.id)
-  );
-
-  allProjects: ProjectCard[] = projectsData;
+  stats: StatBlock[] = [];
+  allProjects: ProjectCard[] = [];
   filteredProjects: ProjectCard[] = [];
+  isLoading: boolean = true;
+  currentFilters: ProjectFilters = {
+    search: '',
+    sortBy: 'recent',
+    projectType: 'all'
+  };
 
   ngOnInit(): void {
+    // Load user info
     const user = localStorage.getItem('currentUser');
     if (user) {
       const userData = JSON.parse(user);
       this.userName = userData.name;
     }
 
-    // Initialize with all projects
-    this.filteredProjects = [...this.allProjects];
-    this.applyFilters({
-      search: '',
-      sortBy: 'recent',
-      projectType: 'all'
-    });
+    // Load stats
+    this.stats = statsData.filter(stat =>
+      ['projects', 'newItems', 'lastLogin', 'dataSources'].includes(stat.id)
+    );
+
+    // Load projects
+    this.allProjects = projectsData;
+    
+    // Simulate loading delay (remove in production)
+    setTimeout(() => {
+      this.isLoading = false;
+      this.applyFilters(this.currentFilters);
+    }, 300);
   }
 
   onFiltersChange(filters: ProjectFilters): void {
+    this.currentFilters = filters;
     this.applyFilters(filters);
+  }
+
+  clearFilters(): void {
+    this.currentFilters = {
+      search: '',
+      sortBy: 'recent',
+      projectType: 'all'
+    };
+    this.applyFilters(this.currentFilters);
   }
 
   private applyFilters(filters: ProjectFilters): void {
     let filtered = [...this.allProjects];
 
     // Apply project type filter
-    if (filters.projectType === 'my-projects') {
-      filtered = filtered.filter(p => p.isMyProject);
-    } else if (filters.projectType === 'available') {
-      filtered = filtered.filter(p => !p.isMyProject);
+    switch (filters.projectType) {
+      case 'my-projects':
+        filtered = filtered.filter(p => p.isMyProject);
+        break;
+      case 'available':
+        filtered = filtered.filter(p => !p.isMyProject);
+        break;
+      // 'all' - no filtering needed
     }
 
     // Apply search filter
-    if (filters.search) {
-      const searchLower = filters.search.toLowerCase();
+    if (filters.search.trim()) {
+      const searchLower = filters.search.toLowerCase().trim();
       filtered = filtered.filter(p => 
         p.title.toLowerCase().includes(searchLower) ||
         p.dataSources.some(ds => ds.toLowerCase().includes(searchLower))
@@ -113,21 +153,37 @@ export class HomeComponent implements OnInit {
     }
 
     // Apply sorting
-    if (filters.sortBy === 'alphabetical') {
-      filtered.sort((a, b) => a.title.localeCompare(b.title));
-    } else {
-      // Sort by most recent
-      filtered.sort((a, b) => {
-        const dateA = new Date(a.createdDate || '').getTime();
-        const dateB = new Date(b.createdDate || '').getTime();
+    filtered.sort((a, b) => {
+      if (filters.sortBy === 'alphabetical') {
+        return a.title.localeCompare(b.title);
+      } else {
+        // Sort by most recent (default)
+        const dateA = new Date(a.createdDate || '1970-01-01').getTime();
+        const dateB = new Date(b.createdDate || '1970-01-01').getTime();
         return dateB - dateA;
-      });
-    }
+      }
+    });
 
     this.filteredProjects = filtered;
   }
 
+  handleVisitProject(projectId: string): void {
+    console.log('Visit project:', projectId);
+    // TODO: Navigate to project detail page
+  }
+
+  handleRequestAccess(projectId: string): void {
+    console.log('Request access to project:', projectId);
+    // TODO: Show request access modal or navigate to request form
+  }
+
+  handleMenuClick(projectId: string): void {
+    console.log('Menu clicked for project:', projectId);
+    // TODO: Show context menu
+  }
+
   onGetStarted = (): void => {
     console.log('Start Introduction');
+    // TODO: Show onboarding tutorial
   };
 }

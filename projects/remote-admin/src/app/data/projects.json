@@ -2,7 +2,7 @@
   {
     "id": "samen-aan-z",
     "title": "Samen aan Z",
-    "image": "/assets/samen-aan-z.jpg",
+    "image": "assets/samen-aan-z.jpg",
     "dataSources": ["Survey", "Wearables"],
     "isMyProject": true,
     "createdDate": "2024-01-15"
@@ -10,7 +10,7 @@
   {
     "id": "innocore",
     "title": "InnoCore",
-    "image": "public/assets/innocore.jpg",
+    "image": "assets/innocore.jpg",
     "dataSources": ["Survey"],
     "isMyProject": false,
     "createdDate": "2024-03-20"
@@ -18,7 +18,7 @@
   {
     "id": "intelligentie-plus",
     "title": "Intelligentie+",
-    "image": "/intelligentie-plus.jpg",
+    "image": "assets/intelligentie-plus.jpg",
     "dataSources": ["AI"],
     "isMyProject": false,
     "createdDate": "2024-02-10"
@@ -26,7 +26,7 @@
   {
     "id": "slimweb",
     "title": "SlimWeb",
-    "image": "../public/assets/slimweb.jpg",
+    "image": "assets/slimweb.jpg",
     "dataSources": ["App Feeds"],
     "isMyProject": false,
     "createdDate": "2024-04-05"
@@ -34,7 +34,7 @@
   {
     "id": "digidossier-nl",
     "title": "DigiDossierNL",
-    "image": "../../public/assets/digidossier.jpg",
+    "image": "assets/digidossier.jpg",
     "dataSources": ["Documents"],
     "isMyProject": false,
     "createdDate": "2024-05-12"
@@ -42,7 +42,7 @@
   {
     "id": "appinsight",
     "title": "AppInsight",
-    "image": "../../../public/assets/appinsight.jpg",
+    "image": "assets/appinsight.jpg",
     "dataSources": ["App Feeds"],
     "isMyProject": false,
     "createdDate": "2024-06-18"
@@ -50,7 +50,7 @@
   {
     "id": "smartsurveyor",
     "title": "SmartSurveyor",
-    "image": "../../../../public/assets/smartsurveyor.jpg",
+    "image": "assets/smartsurveyor.jpg",
     "dataSources": ["Images"],
     "isMyProject": false,
     "createdDate": "2024-07-22"
@@ -58,7 +58,7 @@
   {
     "id": "synaptica",
     "title": "Synaptica",
-    "image": "/assets/projects/synaptica.jpg",
+    "image": "assets/synaptica.jpg",
     "dataSources": ["Lab Data"],
     "isMyProject": false,
     "createdDate": "2024-08-30"

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, combineLatest } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import navigationData from '../data/navigation.json';
 import projectsConfig from '../data/projects-config.json';
 import { NavigationItem } from 'shared-ui';
@@ -21,6 +20,7 @@ interface ProjectConfig {
 })
 export class AdminDataService {
   getNavigationItems(): Observable<NavigationItem[]> {
+    console.log('🔍 AdminDataService: Loading navigation items');
     return this.getCompleteNavigation();
   }
 
@@ -28,34 +28,47 @@ export class AdminDataService {
     const baseNav = navigationData as NavigationItem[];
     const projects = projectsConfig as ProjectConfig[];
 
+    console.log('📋 Base Navigation:', baseNav);
+    console.log('📦 Projects Config:', projects);
+
     // Convert projects to navigation items with children
-    const projectNavItems: NavigationItem[] = projects.map(project => ({
-      label: project.name,
-      route: `/admin/project/${project.id}`,
-      icon: 'projects',
-      isProject: true,
-      isExpanded: false,
-      children: project.dataSources.map(ds => ({
-        label: ds.name,
-        route: ds.route,
-        icon: this.getDataSourceIcon(ds.type)
-      }))
-    }));
+    const projectNavItems: NavigationItem[] = projects.map(project => {
+      const navItem: NavigationItem = {
+        label: project.name,
+        route: `/admin/project/${project.id}`,
+        icon: 'projects',
+        isProject: true,
+        isExpanded: false, // Start collapsed
+        children: project.dataSources.map(ds => ({
+          label: ds.name,
+          route: ds.route,
+          icon: this.getDataSourceIcon(ds.type)
+        }))
+      };
+      
+      console.log(`✅ Created project nav item: ${project.name}`, navItem);
+      return navItem;
+    });
 
-    // Combine base navigation with project items
-    const completeNav = [...baseNav, ...projectNavItems];
+    // Reorder: First item from baseNav, then projects, then remaining baseNav items
+    const completeNav = [
+      baseNav[0],           // Projects Overview (home)
+      ...projectNavItems,   // All projects (Samen aan Z, etc.)
+      ...baseNav.slice(1)   // Users and any other items
+    ];
 
+    console.log('🎯 Complete Navigation:', completeNav);
     return of(completeNav);
   }
 
   private getDataSourceIcon(type: string): string {
     const iconMap: Record<string, string> = {
-      'survey': 'news',
-      'wearables': 'dashboard',
-      'ai': 'dashboard',
-      'app': 'dashboard'
+      'survey': 'survey',
+      'wearables': 'wearables',
+      'ai': 'dataSources',
+      'app': 'dataSources'
     };
-    return iconMap[type] || 'dashboard';
+    return iconMap[type] || 'dataSources';
   }
 
   // Get user's accessible projects (for now, return all)

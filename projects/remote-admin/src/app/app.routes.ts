@@ -15,10 +15,6 @@ export const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'users',
-        component: UsersComponent
-      },
-      {
         path: 'project/:projectId/survey-dashboard',
         component: SurveyDashboardComponent
       },
@@ -26,11 +22,10 @@ export const routes: Routes = [
         path: 'project/:projectId/wearables',
         component: WearablesDashboardComponent
       },
-      // Add more data source routes as needed
-      // {
-      //   path: 'project/:projectId/ai-analytics',
-      //   component: AiAnalyticsComponent
-      // },
+      {
+        path: 'users',
+        component: UsersComponent
+      },
       {
         path: '',
         redirectTo: 'home',

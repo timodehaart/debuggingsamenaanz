@@ -3,10 +3,5 @@
     "label": "Home",
     "route": "/employee/home",
     "icon": "home"
-  },
-  {
-    "label": "Samen aan Z",
-    "route": "/employee/project",
-    "icon": "projects"
   }
 ]

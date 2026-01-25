@@ -46,5 +46,29 @@
     "subtitle": "Participating Organizations", 
     "gradientFrom": "#10B981", 
     "gradientTo": "#059669" 
+  },
+ { 
+    "id": "surveyTotal",
+    "icon": "survey", 
+    "title": "285 total surveys", 
+    "subtitle": "Filled in this month", 
+    "gradientFrom": "#3B82F6", 
+    "gradientTo": "#1D4ED8" 
+  },
+  { 
+    "id": "employees",
+    "icon": "users", 
+    "title": "121/256 employees", 
+    "subtitle": "Filled in surveys this week", 
+    "gradientFrom": "#10B981", 
+    "gradientTo": "#7C3AED" 
+  },
+  { 
+    "id": "nextSurvey",
+    "icon": "calendar", 
+    "title": "27/10/2025 - 12:00", 
+    "subtitle": "Next scheduled survey", 
+    "gradientFrom": "#F59E0B", 
+    "gradientTo": "#D97706" 
   }
 ]

@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProjectComponent } from './components/project/project.component';
-
+import { SurveyDashboardComponent } from './components/survey-dashboard/survey-dashboard.component';
+import { WearablesDashboardComponent } from './components/wearables-dashboard/wearables-dashboard.component';
+import { NewslettersComponent } from './components/newsletters/newsletters.component';
 
 export const routes: Routes = [
   {
@@ -14,8 +15,16 @@ export const routes: Routes = [
         component: HomeComponent
       },
       {
-        path: 'project',
-        component: ProjectComponent
+        path: 'project/:projectId/survey-dashboard',
+        component: SurveyDashboardComponent
+      },
+      {
+        path: 'project/:projectId/wearables',
+        component: WearablesDashboardComponent
+      },
+      {
+        path: 'project/:projectId/newsletters',
+        component: NewslettersComponent
       },
       {
         path: '',

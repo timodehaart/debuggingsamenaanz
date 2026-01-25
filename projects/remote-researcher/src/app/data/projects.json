@@ -1,0 +1,66 @@
+[
+  {
+    "id": "samen-aan-z",
+    "title": "Samen aan Z",
+    "image": "assets/samen-aan-z.jpg",
+    "dataSources": ["Survey", "Wearables", "Newsletters"],
+    "isMyProject": true,
+    "createdDate": "2024-01-15"
+  },
+  {
+    "id": "innocore",
+    "title": "InnoCore",
+    "image": "assets/innocore.jpg",
+    "dataSources": ["Survey"],
+    "isMyProject": false,
+    "createdDate": "2024-03-20"
+  },
+  {
+    "id": "intelligentie-plus",
+    "title": "Intelligentie+",
+    "image": "assets/intelligentie-plus.jpg",
+    "dataSources": ["AI"],
+    "isMyProject": false,
+    "createdDate": "2024-02-10"
+  },
+  {
+    "id": "slimweb",
+    "title": "SlimWeb",
+    "image": "assets/slimweb.jpg",
+    "dataSources": ["App Feeds"],
+    "isMyProject": false,
+    "createdDate": "2024-04-05"
+  },
+  {
+    "id": "digidossier-nl",
+    "title": "DigiDossierNL",
+    "image": "assets/digidossier.jpg",
+    "dataSources": ["Documents"],
+    "isMyProject": false,
+    "createdDate": "2024-05-12"
+  },
+  {
+    "id": "appinsight",
+    "title": "AppInsight",
+    "image": "assets/appinsight.jpg",
+    "dataSources": ["App Feeds"],
+    "isMyProject": false,
+    "createdDate": "2024-06-18"
+  },
+  {
+    "id": "smartsurveyor",
+    "title": "SmartSurveyor",
+    "image": "assets/smartsurveyor.jpg",
+    "dataSources": ["Images"],
+    "isMyProject": false,
+    "createdDate": "2024-07-22"
+  },
+  {
+    "id": "synaptica",
+    "title": "Synaptica",
+    "image": "assets/synaptica.jpg",
+    "dataSources": ["Lab Data"],
+    "isMyProject": false,
+    "createdDate": "2024-08-30"
+  }
+]

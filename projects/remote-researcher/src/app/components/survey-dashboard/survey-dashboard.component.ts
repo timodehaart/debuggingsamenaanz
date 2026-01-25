@@ -4,17 +4,17 @@ import { BannerComponent, StatsBlocksComponent, StatBlock } from 'shared-ui';
 import statsData from '../../data/stats.json';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-survey-dashboard',
   standalone: true,
   imports: [CommonModule, BannerComponent, StatsBlocksComponent],
   template: `
-    <div class="p-6">
+    <div class="p-field">
       <!-- Banner -->
       <lib-banner
         [title]="'Survey Dashboard'"
         [subtitle]="'In this dashboard, you can create, update, and manage surveys. Distribute them to your target group and analyse responses to gather meaningful insights.'"
         [buttonText]="'Get Started'"
-        [buttonAction]="onGetStarted"
+        [buttonAction]="onCreateSurvey"
       ></lib-banner>
 
       <!-- Stats Blocks -->
@@ -22,17 +22,21 @@ import statsData from '../../data/stats.json';
         <lib-stats-blocks [stats]="stats"></lib-stats-blocks>
       </div>
 
-      <!-- Title -->
-      <div class="mt-field text-h2 font-semibold text-ui-text">Surveys</div>
+      <!-- Projects Section -->
+      <div class="mt-field">
+        <!-- Title -->
+        <h2 class="text-h2 font-semibold text-ui-text mb-field">Projects</h2>
+      </div>
     </div>
   `
 })
-export class ProjectComponent {
+export class SurveyDashboardComponent {
   stats: StatBlock[] = statsData.filter(stat =>
-    ['surveyTotal', 'Employees', 'nextSurvey'].includes(stat.id)
+    ['surveyTotal', 'employees', 'nextSurvey'].includes(stat.id)
   );
 
-  onGetStarted = (): void => {
-    console.log('Start Introduction');
+  onCreateSurvey = (): void => {
+    console.log('Create new survey');
+    // TODO: Open survey creation modal or navigate to creation page
   };
 }

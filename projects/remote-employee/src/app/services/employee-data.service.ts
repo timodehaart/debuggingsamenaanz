@@ -8,12 +8,7 @@ import { NavigationItem } from 'shared-ui';
 })
 export class EmployeeDataService {
   getNavigationItems(): Observable<NavigationItem[]> {
-    return of(navigationData);
-  }
-
-  // Future: Load dynamic projects and add to navigation
-  getDynamicProjects(): Observable<NavigationItem[]> {
-    // This would fetch from an API later
-    return of([]);
+    // Employee only has simple navigation - just return the base nav
+    return of(navigationData as NavigationItem[]);
   }
 }

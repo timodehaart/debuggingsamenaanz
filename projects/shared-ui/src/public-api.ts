@@ -11,6 +11,7 @@ export * from './lib/components/filters/calendar-filter.component';
 export * from './lib/components/filters/search-filter.component';
 export * from './lib/components/project-filters/project-filters.component';
 export * from './lib/components/project-cards/project-card.component';
+export * from './lib/components/surveys-table/surveys-table.component';
 
 // Models
 export * from './lib/models/navigation.model';

@@ -1,0 +1,98 @@
+[
+  {
+    "id": "survey-1",
+    "name": "Weekly Survey",
+    "isPublic": true,
+    "publishDate": "27/10/2025",
+    "publishTime": "12:00",
+    "closingDate": "03/11/2025",
+    "closingTime": "12:00",
+    "status": "Scheduled",
+    "participants": "0/256",
+    "lastModified": "25/10/2025"
+  },
+  {
+    "id": "survey-2",
+    "name": "3 Month Survey",
+    "isPublic": true,
+    "publishDate": "01/11/2025",
+    "publishTime": "14:00",
+    "closingDate": "01/02/2026",
+    "closingTime": "14:00",
+    "status": "Scheduled",
+    "participants": "0/256",
+    "lastModified": "24/10/2025"
+  },
+  {
+    "id": "survey-3",
+    "name": "6 Month Survey",
+    "isPublic": true,
+    "publishDate": "To be scheduled",
+    "publishTime": "To be scheduled",
+    "closingDate": "To be scheduled",
+    "closingTime": "To be scheduled",
+    "status": "Draft",
+    "participants": "0/256",
+    "lastModified": "24/10/2025"
+  },
+  {
+    "id": "survey-4",
+    "name": "Weekly Survey",
+    "isPublic": false,
+    "publishDate": "20/10/2025",
+    "publishTime": "10:00",
+    "closingDate": "27/10/2025",
+    "closingTime": "10:00",
+    "status": "Open",
+    "participants": "121/256",
+    "lastModified": "18/10/2025"
+  },
+  {
+    "id": "survey-5",
+    "name": "Weekly Survey",
+    "isPublic": true,
+    "publishDate": "13/10/2025",
+    "publishTime": "16:00",
+    "closingDate": "20/10/2025",
+    "closingTime": "16:00",
+    "status": "Closed",
+    "participants": "164/256",
+    "lastModified": "08/10/2025"
+  },
+  {
+    "id": "survey-6",
+    "name": "6 Month Survey",
+    "isPublic": true,
+    "publishDate": "To be scheduled",
+    "publishTime": "To be scheduled",
+    "closingDate": "To be scheduled",
+    "closingTime": "To be scheduled",
+    "status": "Draft",
+    "participants": "0/256",
+    "lastModified": "24/10/2025"
+  },
+  {
+    "id": "survey-7",
+    "name": "Weekly Survey",
+    "isPublic": true,
+    "publishDate": "20/10/2025",
+    "publishTime": "10:00",
+    "closingDate": "27/10/2025",
+    "closingTime": "10:00",
+    "status": "Open",
+    "participants": "121/256",
+    "lastModified": "18/10/2025"
+  },
+  {
+    "id": "survey-8",
+    "name": "Weekly Survey",
+    "isPublic": false,
+    "publishDate": "13/10/2025",
+    "publishTime": "16:00",
+    "closingDate": "20/10/2025",
+    "closingTime": "16:00",
+    "status": "Closed",
+    "participants": "164/256",
+    "lastModified": "08/10/2025"
+  }
+]
